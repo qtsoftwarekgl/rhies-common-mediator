@@ -1,0 +1,61 @@
+version: "3.3"
+services:
+  cr-mediator:
+    build: .
+    image: generic-mediator
+    ports:
+      - "4005:4005"
+    environment:
+      - MED_DESCRIPTION=A mediator to post OpenMRS patient medical history to CR
+      - CHANNEL_NAME=OpenMRS to CR channel
+      - URL_PATTERN=/Patient/
+      - ROUTE_NAME=OpenMRS to CR route
+      - HOST=rbchie01.kwigira.org
+      - PORT=4005
+      - PROTOCOL=http
+      - UPSTREAM_URL=http://rbchie01.kwigira.org:4005
+      - OPENHIM_USERNAME=root@openhim.org
+      - OPENHIM_PASSWORD=Gtsl@2020
+      - OPENHIM_APIURL=http://rbchie01.kwigira.org:8080
+      - REGISTRY_URL=http://rbchie01.kwigira.org:8079
+      - MED_NAME=cr-mediator
+  dhis2-mediator:
+    build: .
+    image: generic-mediator
+    ports:
+      - "4006:4006"
+    environment:
+      - MED_DESCRIPTION=A mediator to post OpenMRS patient medical history to DHIS2
+      - CHANNEL_NAME=OpenMRS to DHIS2 channel
+      - URL_PATTERN=/hmis/
+      - ROUTE_NAME=OpenMRS to CR route
+      - HOST=rbchie01.kwigira.org
+      - PORT=4006
+      - PROTOCOL=http
+      - UPSTREAM_URL=http://rbchie01.kwigira.org:4006
+      - OPENHIM_USERNAME=root@openhim.org
+      - OPENHIM_PASSWORD=Gtsl@2020
+      - OPENHIM_APIURL=http://rbchie01.kwigira.org:8080
+      - REGISTRY_URL=http://rbchie01.kwigira.org:8079
+      - MED_NAME=dhis2-mediator
+  shr-mediator:
+    build: .
+    image: generic-mediator
+    ports:
+      - "4004:4004"
+    environment:
+      - MED_DESCRIPTION=A mediator to post OpenMRS patient medical history to SHR
+      - CHANNEL_NAME=OpenMRS to SHR channel
+      - URL_PATTERN=/shr/
+      - ROUTE_NAME=OpenMRS to SHR route
+      - HOST=rbchie01.kwigira.org
+      - PORT=4004
+      - PROTOCOL=http
+      - UPSTREAM_URL=http://rbchie01.kwigira.org:4004
+      - OPENHIM_USERNAME=root@openhim.org
+      - OPENHIM_PASSWORD=Gtsl@2020
+      - OPENHIM_APIURL=http://rbchie01.kwigira.org:8080
+      - REGISTRY_URL=http://rbchie01.kwigira.org:8078
+      - MED_NAME=shr-mediator
+
+
